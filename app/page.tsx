@@ -17,7 +17,7 @@ export default function Home() {
           >
             By{" "}
             <Image
-              src="/vercel.svg"
+              src="/vercel.webp"
               alt="Vercel Logo"
               className={styles.vercelLogo}
               width={100}
