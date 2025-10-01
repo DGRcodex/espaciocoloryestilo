@@ -1,15 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-  <title>middle-finger white (outlined)</title>
-  <g fill="#fff" stroke="#111" stroke-width="2">
-    <rect x="96" y="168" width="64" height="64" rx="12"/>
-    <rect x="64" y="120" width="128" height="64" rx="16"/>
-    <path d="M64 152c-16 0-28-10-28-24 0-10 6-18 14-21 8-3 17 0 22 6l16 20-8 8c-4 4-10 7-16 7z"/>
-    <path d="M104 120c-8 0-16-6-16-16V84c0-10 8-18 18-18s18 8 18 18v36h-20z"/>
-    <rect x="118" y="24" width="20" height="96" rx="10"/>
-    <rect x="110" y="104" width="36" height="24" rx="8"/>
-    <path d="M152 120c-8 0-16-6-16-16V92c0-10 8-18 18-18s18 8 18 18v12c0 8-6 16-16 16h-4z"/>
-    <path d="M176 128c-6 0-12-5-12-12v-6c0-9 7-16 16-16s16 7 16 16v6c0 7-5 12-12 12h-8z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 200 250">
+  <title>Dedo del Medio - Broma</title>
+  <style>
+    /* Usamos 'currentColor' para que el SVG tome el color del texto de su contenedor */
+    .hand-fill {
+      fill: currentColor;
+      stroke: #000000;
+      stroke-width: 2; /* Reducido para mejor escala */
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+    .knuckle-line {
+      stroke: #000000;
+      stroke-width: 1; /* Reducido para mejor escala */
+      stroke-opacity: 0.3;
+      stroke-linecap: round;
+    }
+  </style>
+  <g class="hand-fill">
+    <path d="M100 240 C 70 230, 40 200, 40 160 C 40 120, 70 80, 80 80 L 120 80 C 130 80, 160 120, 160 160 C 160 200, 130 230, 100 240 Z" />
+    <path d="M145 100 L150 70 L140 60 L135 90 Z" />
+    <path d="M130 80 L135 40 L125 30 L120 70 Z" />
+    <path d="M95 80 L95 10 L105 10 L105 80 Z" />
+    <path d="M70 80 L65 40 L75 30 L80 70 Z" />
+    <path d="M40 170 C30 160, 20 150, 20 130 C20 110, 30 100, 50 100 C60 100, 70 110, 70 120 Z" />
   </g>
-  <!-- líneas de nudillos suaves -->
-  <path d="M80 140h32M144 140h40" stroke="#111" stroke-opacity=".25" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <g class="knuckle-line">
+    <line x1="85" y1="120" x2="115" y2="120" />
+    <line x1="75" y1="100" x2="85" y2="100" />
+    <line x1="115" y1="100" x2="125" y2="100" />
+    <line x1="55" y1="140" x2="65" y2="140" />
+    <line x1="135" y1="140" x2="145" y2="140" />
+  </g>
 </svg>
