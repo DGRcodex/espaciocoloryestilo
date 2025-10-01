@@ -116,7 +116,7 @@ export default function Footer() {
               </a>{" "}
               — Publicado por{" "}
               <a href="https://sambalab.pro" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
-                sambalab.pro
+                SAMbalab Agency
               </a>
             </p>
           </div>
