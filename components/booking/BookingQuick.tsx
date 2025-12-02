@@ -7,17 +7,34 @@ export default function BookingQuick() {
   const [s, setS] = useState<S>("idle");
   const [msg, setMsg] = useState("");
 
-  async function submit(e: React.FormEvent<HTMLFormElement>) {
+  function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setS("loading"); setMsg("");
-    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
-    try {
-      // Si luego activamos Supabase, aquí va el fetch al /api/appointments
-      await new Promise(r => setTimeout(r, 600)); // demo
-      setS("ok"); (e.target as HTMLFormElement).reset();
-    } catch (err: any) {
-      setS("err"); setMsg(err.message || "Error");
-    }
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    const service = data.service as string;
+    const name = data.full_name as string;
+    const date = data.date as string;
+    const email = data.email as string;
+
+    const subject = `Nueva Reserva: ${service} - ${name}`;
+    const body = `Hola, quisiera reservar una hora.
+    
+Servicio: ${service}
+Nombre: ${name}
+Fecha deseada: ${date}
+Email de contacto: ${email}
+
+Por favor confirmar disponibilidad.`;
+
+    const mailtoLink = `mailto:dgr@sambalab.pro?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoLink;
+
+    setS("ok");
+    (e.target as HTMLFormElement).reset();
   }
 
   return (
