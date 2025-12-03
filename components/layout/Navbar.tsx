@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
@@ -13,11 +14,17 @@ export default function Navbar() {
         {/* Marca (Bebas) */}
         <Link
           href="/"
-          className="text-2xl tracking-wide text-brand-ink"
-          style={{ fontFamily: "var(--font-bebas)" }}
+          className="block"
           aria-label="Spazio Color y Estilo — inicio"
         >
-          SPAZIO COLOR Y ESTILO
+          <Image
+            src="/logotransparente.png"
+            alt="Spazio Color y Estilo"
+            width={180}
+            height={50}
+            className="h-12 w-auto object-contain mix-blend-multiply"
+            priority
+          />
         </Link>
 
         {/* Navegación desktop */}
@@ -42,7 +49,7 @@ export default function Navbar() {
           aria-label="Abrir menú"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </button>
       </div>

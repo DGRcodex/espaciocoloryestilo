@@ -10,17 +10,18 @@ export default function Hero() {
       <div className="container-p grid md:grid-cols-[1.3fr_.9fr] gap-8 items-start">
         {/* Copy principal */}
         <div>
-          <p className="text-betadorado text-sm" style={{ fontFamily: "var(--font-bebas)" }}>
-            New York Hair Attitude — 2025
+          <p className="text-betadorado font-medium tracking-widest text-sm mb-4" style={{ fontFamily: "var(--font-mont)" }}>
+            NEW YORK HAIR ATTITUDE
           </p>
-          <h1 className="text-[40px] leading-[1.05] sm:text-[56px] md:text-[68px] mb-3 text-brand-ink" style={{ fontFamily: "var(--font-bebas)" }}>
-            SPAZIO COLOR Y ESTILO
+          <h1 className="text-[42px] leading-[1.1] sm:text-[56px] md:text-[72px] mb-6 text-brand-ink" style={{ fontFamily: "var(--font-bodoni)" }}>
+            Experiencia de Lujo <br />
+            <span className="italic text-black/80">para tu cabello</span>
           </h1>
-          <p className="text-lg sm:text-xl text-black/70 max-w-2xl" style={{ fontFamily: "var(--font-mont)" }}>
-            Color de autor y cortes precisos. Reserva online y recibe confirmación al correo.
+          <p className="text-lg sm:text-xl text-black/70 max-w-xl leading-relaxed" style={{ fontFamily: "var(--font-mont)" }}>
+            Color de autor y cortes de precisión en un ambiente diseñado para ti.
           </p>
 
-          <p className="mt-4 text-xl text-brand-ink" style={{ fontFamily: "var(--font-bodoni)" }}>
+          <p className="mt-8 text-lg text-brand-ink font-medium" style={{ fontFamily: "var(--font-mont)" }}>
             Balayage • Highlights • Corte de precisión
           </p>
 

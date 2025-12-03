@@ -12,7 +12,7 @@ export default function Services() {
   return (
     <section id="servicios" className="py-12 md:py-16">
       <div className="container-p">
-        <h2 className="font-bebas text-3xl md:text-4xl text-brand-ink mb-6">Servicios destacados</h2>
+        <h2 className="font-bodoni text-3xl md:text-4xl text-brand-ink mb-6">Servicios destacados</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {items.map((it) => (
             <article key={it.title} className="card group flex flex-col overflow-hidden rounded-xl border border-black/5 bg-white transition-shadow hover:shadow-lg">

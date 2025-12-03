@@ -15,7 +15,7 @@ export default function Gallery() {
   return (
     <section id="galeria" className="py-12 md:py-16">
       <div className="container-p">
-        <h2 className="font-bebas text-3xl md:text-4xl text-brand-ink mb-6">Trabajos recientes</h2>
+        <h2 className="font-bodoni text-3xl md:text-4xl text-brand-ink mb-6">Trabajos recientes</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {works.map((work, i) => (
             <div key={i} className="group relative aspect-square rounded-xl overflow-hidden bg-black/5">

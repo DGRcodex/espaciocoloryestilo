@@ -11,8 +11,10 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",
     "class-variance-authority": "^0.7.1",
+    "googleapis": "^166.0.0",
     "lucide-react": "^0.544.0",
     "next": "14.2.33",
+    "nodemailer": "^7.0.11",
     "react": "^18",
     "react-dom": "^18"
   },

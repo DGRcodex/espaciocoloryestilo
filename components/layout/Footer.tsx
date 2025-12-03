@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, MapPin, Clock, Instagram, Facebook, Youtube } from "lucide-react";
 
 export default function Footer() {
@@ -11,7 +12,14 @@ export default function Footer() {
       <div className="mx-auto max-w-screen-3xl px-4 xs:px-5 sm:px-6 md:px-8 py-10">
         {/* Marca + claim */}
         <div className="mb-8">
-          <h3 className="font-bebas text-3xl tracking-wide">SPAZIO COLOR Y ESTILO</h3>
+          <div className="mb-4 relative h-16 w-48">
+            <Image
+              src="/logotransparente.png"
+              alt="Spazio Color y Estilo"
+              fill
+              className="object-contain object-left mix-blend-multiply"
+            />
+          </div>
           <p className="font-mont text-sm text-brand-ink/70">
             Color de autor y cortes precisos para señoras, jóvenes y caballeros.
           </p>
