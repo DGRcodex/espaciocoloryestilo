@@ -11,7 +11,7 @@ export default function Hero() {
         {/* Copy principal */}
         <div>
           <p className="text-betadorado font-medium tracking-widest text-sm mb-4" style={{ fontFamily: "var(--font-mont)" }}>
-            NEW YORK HAIR ATTITUDE
+            UN ESPACIO DEDICADO A TI
           </p>
           <h1 className="text-[42px] leading-[1.1] sm:text-[56px] md:text-[72px] mb-6 text-brand-ink" style={{ fontFamily: "var(--font-bodoni)" }}>
             Experiencia de Lujo <br />

@@ -2,9 +2,9 @@ import Image from "next/image";
 
 type Stylist = { name: string; role: string; bio: string; img: string };
 const team: Stylist[] = [
-  { name: "Ari", role: "Colorista • Balayage", bio: "Color de alto impacto con foco en salud capilar.", img: "https://placehold.co/400x500/png?text=Ari+(Foto)" },
-  { name: "Luca", role: "Cortes de precisión", bio: "Geometría y textura para resultados que duran.", img: "https://placehold.co/400x500/png?text=Luca+(Foto)" },
-  { name: "Sofi", role: "Blonding • Highlights", bio: "Rubios limpios, técnica meticulosa.", img: "https://placehold.co/400x500/png?text=Sofi+(Foto)" },
+  { name: "Mabel", role: "Colorista • Balayage", bio: "Color de alto impacto con foco en salud capilar.", img: "/images/team/Mabel.png" },
+  { name: "Luca", role: "Cortes de precisión", bio: "Geometría y textura para resultados que duran.", img: "/images/team/hombre.png" },
+  { name: "Ari", role: "Blonding • Highlights", bio: "Rubios limpios, técnica meticulosa.", img: "/images/team/ari.jpg" },
 ];
 
 export default function Team() {

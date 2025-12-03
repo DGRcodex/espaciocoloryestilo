@@ -101,7 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="font-mont bg-brand-bg text-brand-fg antialiased">
         <Navbar />
-        <div className="mx-auto px-4 xs:px-5 sm:px-6 md:px-8 max-w-screen-3xl">
+        <div className="container-p">
           {children}
         </div>
         <Footer />

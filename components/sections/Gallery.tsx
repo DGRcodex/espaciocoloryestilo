@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const works = [
-  { title: "Rubio Vainilla", img: "/images/gallery/rubiovainilla1.png" },
+  { title: "Spazio Color y Estilo", img: "/images/gallery/afro_style.png" },
   { title: "Morena Iluminada", img: "/images/gallery/morenailuminada.png" },
   { title: "Corte Bob Italiano", img: "/images/gallery/bobitaliano.png" },
   { title: "Styling Ondas Glam", img: "/images/gallery/ondasglam.png" },

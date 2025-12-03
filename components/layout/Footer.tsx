@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="h-[2px] bg-betaturquesa"></div>
       <div className="h-[2px] bg-betadorado"></div>
 
-      <div className="mx-auto max-w-screen-3xl px-4 xs:px-5 sm:px-6 md:px-8 py-10">
+      <div className="container-p py-10">
         {/* Marca + claim */}
         <div className="mb-8">
           <div className="mb-4 relative h-16 w-48">
@@ -40,7 +40,7 @@ export default function Footer() {
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-brand-ink/60" aria-hidden />
                 <a href="tel:+56912345678" className="underline underline-offset-2">
-                  +56 9 1234 5678
+                  +56 9 87819145
                 </a>
               </li>
             </ul>
@@ -53,7 +53,7 @@ export default function Footer() {
               <div className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 mt-0.5 text-brand-ink/60" aria-hidden />
                 <span>
-                  Calle Ficticia 1234, Piso 2<br />Providencia, Santiago — Chile
+                  Avenida Vicuña Mackenna Oriente 6100,<br /> La Florida, Región Metropolitana, Chile.
                 </span>
               </div>
             </address>
@@ -115,7 +115,7 @@ export default function Footer() {
             {/* Créditos casi invisibles, como hacen las agencias */}
             <p className="text-[11px] leading-none text-brand-ink/40 select-none">
               Creado y diseñado por{" "}
-              <a href="https://dgrcodex.me" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+              <a href="https://dgrcodex.sambalab.pro" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
                 dgrcodex
               </a>{" "}
               ·{" "}

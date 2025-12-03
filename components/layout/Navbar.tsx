@@ -10,7 +10,7 @@ export default function Navbar() {
       <div className="h-1 bg-primary"></div>
       <div className="h-1 bg-secondary"></div>
 
-      <div className="mx-auto max-w-screen-3xl px-4 xs:px-5 sm:px-6 md:px-8 h-16 flex items-center justify-between">
+      <div className="container-p h-16 flex items-center justify-center lg:justify-between">
         {/* Marca (Bebas) */}
         <Link
           href="/"
@@ -22,7 +22,7 @@ export default function Navbar() {
             alt="Spazio Color y Estilo"
             width={180}
             height={50}
-            className="h-12 w-auto object-contain mix-blend-multiply"
+            className="h-14 lg:h-12 w-auto object-contain mix-blend-multiply"
             priority
           />
         </Link>
@@ -42,16 +42,6 @@ export default function Navbar() {
             Reservar hora
           </a>
         </nav>
-
-        {/* Botón menú móvil (placeholder, lo activamos si quieres drawer) */}
-        <button
-          className="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-md border border-black/10 text-brand-ink"
-          aria-label="Abrir menú"
-        >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-        </button>
       </div>
     </header>
   );
