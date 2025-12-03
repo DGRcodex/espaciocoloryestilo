@@ -11,7 +11,6 @@ export default function BookingQuick() {
   const [busySlots, setBusySlots] = useState<string[]>([]);
   const [loadingAvailability, setLoadingAvailability] = useState(false);
 
-  // Rango de horas: 9:00 a 21:00
   const timeSlots = Array.from({ length: 13 }, (_, i) => `${i + 9}:00`);
 
   useEffect(() => {
@@ -51,22 +50,33 @@ export default function BookingQuick() {
         throw new Error(json.error || "No se pudo agendar.");
       }
 
+      // 1. ÉXITO VISUAL
       setS("ok");
+
+      // 2. LIMPIEZA DE DATOS INTERNA
       (e.target as HTMLFormElement).reset();
       setBusySlots([]);
       setSelectedDate("");
+
+      // 3. REINICIO AUTOMÁTICO (Aquí está la magia) ⏳
+      // Después de 5 segundos (5000ms), vuelve a estar disponible
+      setTimeout(() => {
+        setS("idle");
+        setMsg("");
+      }, 5000);
+
     } catch (error: any) {
       setS("err");
       setMsg(error.message || "Error al procesar.");
     }
   }
 
-  // Estilos base de inputs
+  // Estilos base
   const inputClass = "w-full rounded-xl border border-black/10 px-4 py-3 bg-gray-50 focus:bg-white focus:ring-1 focus:ring-[#0F766E] outline-none transition-all font-mont text-sm text-gray-800 placeholder:text-gray-400";
   const labelClass = "text-xs font-bold text-gray-400 mb-1 ml-1 uppercase tracking-wide font-mont";
 
   return (
-    <form onSubmit={submit} className="w-full bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 relative">
+    <form onSubmit={submit} className="w-full bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-100 relative transition-all duration-500">
 
       <h3 className="text-3xl mb-2 font-bebas tracking-wide text-gray-900">
         RESERVA RÁPIDA
@@ -125,13 +135,12 @@ export default function BookingQuick() {
         </div>
       </div>
 
-      {/* BOTÓN DE ENVÍO */}
       <div className="mt-8 pt-2">
         <button
           type="submit"
           disabled={s === "loading" || s === "ok"}
           className={`
-            w-full flex items-center justify-center px-6 py-4 rounded-full font-bold text-white text-sm tracking-widest font-mont transition-all shadow-md transform
+            w-full flex items-center justify-center px-6 py-4 rounded-full font-bold text-white text-sm tracking-widest font-mont transition-all shadow-md transform duration-300
             ${s === "loading" ? "bg-gray-400 cursor-not-allowed" : ""}
             ${s === "idle" || s === "err" ? "bg-[#0F766E] hover:bg-[#115E59] hover:shadow-lg active:scale-[0.98]" : ""}
             ${s === "ok" ? "bg-[#16a34a] cursor-default ring-4 ring-green-100" : ""}
@@ -140,21 +149,16 @@ export default function BookingQuick() {
           {s === "loading" ? (
             <span className="flex items-center gap-3">AGENDANDO...</span>
           ) : s === "ok" ? (
-            <span className="flex items-center gap-2">¡AGENDADO!</span>
+            <span className="flex items-center gap-2 animate-in fade-in zoom-in">¡AGENDADO!</span>
           ) : (
             "CONFIRMAR RESERVA"
           )}
         </button>
       </div>
 
-      {/* ==================================================
-        MENSAJES DE ESTADO ESTILIZADOS (SIN EMOJIS) 
-        ==================================================
-      */}
-
+      {/* MENSAJE DE ÉXITO */}
       {s === "ok" && (
-        <div className="mt-6 p-5 bg-[#F0FDF4] border border-[#DCFCE7] rounded-xl flex items-start gap-4 animate-in fade-in slide-in-from-bottom-2">
-          {/* Icono Check SVG Fino dentro de círculo blanco */}
+        <div className="mt-6 p-5 bg-[#F0FDF4] border border-[#DCFCE7] rounded-xl flex items-start gap-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
           <div className="flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#166534] shadow-sm border border-[#DCFCE7]">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12"></polyline>
@@ -169,9 +173,9 @@ export default function BookingQuick() {
         </div>
       )}
 
+      {/* MENSAJE DE ERROR */}
       {s === "err" && (
         <div className="mt-6 p-5 bg-[#FEF2F2] border border-[#FECACA] rounded-xl flex items-start gap-4 animate-in fade-in slide-in-from-bottom-2">
-          {/* Icono X SVG Fino dentro de círculo blanco */}
           <div className="flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#991B1B] shadow-sm border border-[#FECACA]">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
