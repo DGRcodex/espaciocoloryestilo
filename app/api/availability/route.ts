@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import { google } from "googleapis";
 
+
 export const dynamic = "force-dynamic"; // Para que no cachee resultados viejos
 
 export async function GET(request: Request) {
