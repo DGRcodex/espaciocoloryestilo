@@ -11,7 +11,26 @@ export default function BookingQuick() {
   const [busySlots, setBusySlots] = useState<string[]>([]);
   const [loadingAvailability, setLoadingAvailability] = useState(false);
 
-  const timeSlots = Array.from({ length: 13 }, (_, i) => `${i + 9}:00`);
+  // --- LÓGICA DE HORARIO NUEVA ---
+  // Generamos horas de 10:30 a 19:00 con saltos de 30 mins
+  const timeSlots: string[] = [];
+  // Empezamos a las 10 y terminamos a las 19
+  for (let h = 10; h <= 19; h++) {
+    // Minutos: 00 y 30
+    const minutes = ["00", "30"];
+
+    minutes.forEach(m => {
+      // Regla 1: Si es las 10, solo queremos 10:30 (saltamos 10:00)
+      if (h === 10 && m === "00") return;
+
+      // Regla 2: Si es las 19, solo permitimos 19:00 (si es el cierre)
+      // Si quieres permitir 19:30, borra esta línea.
+      if (h === 19 && m === "30") return;
+
+      timeSlots.push(`${h}:${m}`);
+    });
+  }
+  // -------------------------------
 
   useEffect(() => {
     if (!selectedDate) return;
@@ -50,16 +69,12 @@ export default function BookingQuick() {
         throw new Error(json.error || "No se pudo agendar.");
       }
 
-      // 1. ÉXITO VISUAL
       setS("ok");
-
-      // 2. LIMPIEZA DE DATOS INTERNA
       (e.target as HTMLFormElement).reset();
       setBusySlots([]);
       setSelectedDate("");
 
-      // 3. REINICIO AUTOMÁTICO (Aquí está la magia) ⏳
-      // Después de 5 segundos (5000ms), vuelve a estar disponible
+      // Reset automático a los 5 segundos
       setTimeout(() => {
         setS("idle");
         setMsg("");
@@ -71,7 +86,6 @@ export default function BookingQuick() {
     }
   }
 
-  // Estilos base
   const inputClass = "w-full rounded-xl border border-black/10 px-4 py-3 bg-gray-50 focus:bg-white focus:ring-1 focus:ring-[#0F766E] outline-none transition-all font-mont text-sm text-gray-800 placeholder:text-gray-400";
   const labelClass = "text-xs font-bold text-gray-400 mb-1 ml-1 uppercase tracking-wide font-mont";
 
@@ -156,7 +170,7 @@ export default function BookingQuick() {
         </button>
       </div>
 
-      {/* MENSAJE DE ÉXITO */}
+      {/* MENSAJES DE ESTADO */}
       {s === "ok" && (
         <div className="mt-6 p-5 bg-[#F0FDF4] border border-[#DCFCE7] rounded-xl flex items-start gap-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
           <div className="flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#166534] shadow-sm border border-[#DCFCE7]">
@@ -173,7 +187,6 @@ export default function BookingQuick() {
         </div>
       )}
 
-      {/* MENSAJE DE ERROR */}
       {s === "err" && (
         <div className="mt-6 p-5 bg-[#FEF2F2] border border-[#FECACA] rounded-xl flex items-start gap-4 animate-in fade-in slide-in-from-bottom-2">
           <div className="flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#991B1B] shadow-sm border border-[#FECACA]">
