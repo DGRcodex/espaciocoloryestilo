@@ -39,7 +39,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-brand-ink/60" aria-hidden />
-                <a href="tel:+56912345678" className="underline underline-offset-2">
+                <a href="tel:+56987819145" className="underline underline-offset-2">
                   +56 9 87819145
                 </a>
               </li>
@@ -78,7 +78,7 @@ export default function Footer() {
                 Reservar hora
               </Link>
               <a
-                href="https://wa.me/56912345678?text=Hola%20Spazio%20Color%20y%20Estilo%2C%20quiero%20reservar%20una%20hora."
+                href="https://wa.me/+56987819145?text=Hola%20Spazio%20Color%20y%20Estilo%2C%20quiero%20reservar%20una%20hora."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center rounded-full px-4 py-2 border border-betaturquesa text-betaturquesa hover:bg-betaturquesa/5 transition-colors text-sm"

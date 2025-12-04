@@ -8,7 +8,7 @@ export default function CtaBand() {
         </div>
         <div className="flex gap-3">
           <a href="#reserva" className="px-5 py-3 rounded-full border text-sm hover:bg-black/[.03]">Reservar</a>
-          <a href="https://wa.me/56912345678" target="_blank" rel="noopener noreferrer" className="px-5 py-3 rounded-full border text-sm">
+          <a href="https://wa.me/56987819145" target="_blank" rel="noopener noreferrer" className="px-5 py-3 rounded-full border text-sm">
             WhatsApp
           </a>
         </div>

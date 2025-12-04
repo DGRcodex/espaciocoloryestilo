@@ -186,7 +186,7 @@ export default function BookingQuick() {
           <input
             type="tel"
             name="phone"
-            placeholder="+56 9 1234 5678"
+            placeholder="+56 9 8781 9145"
             className={inputClass}
           />
         </div>
