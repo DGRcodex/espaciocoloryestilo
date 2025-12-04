@@ -11,9 +11,9 @@ const formatICSDate = (date: Date) => {
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { service, full_name, email, date, time } = body;
+        const { service, full_name, email, date, time, phone } = body;
 
-        // Validaciones básicas
+        // Validaciones básicas (teléfono es opcional)
         if (!full_name || !email || !date || !time) {
             return NextResponse.json(
                 { error: "Faltan datos (nombre, email, fecha u hora)." },
@@ -22,39 +22,39 @@ export async function POST(req: Request) {
         }
 
         // --- LÓGICA DE FECHA Y HORA ---
-        // Combinamos la fecha (2025-12-04) con la hora (14:00)
-        // Creamos un string ISO compatible: "2025-12-04T14:00:00"
         const startDateTimeString = `${date}T${time}:00`;
         const start = new Date(startDateTimeString);
+        const end = new Date(start.getTime() + 60 * 60 * 1000); // +1 hora
 
-        // Calculamos fin (1 hora después)
-        const end = new Date(start.getTime() + 60 * 60 * 1000);
-
-        const summary = `Servicio: ${service} - ${full_name}`;
-        const description = `Cliente: ${full_name}\nEmail: ${email}\nServicio: ${service}\nAgendado web.`;
+        const description =
+            `Cliente: ${full_name}\n` +
+            `Email: ${email}\n` +
+            (phone ? `Teléfono: ${phone}\n` : "") +
+            `Servicio: ${service}\n` +
+            `Agendado web.`;
 
         // 1. AUTH GOOGLE
         const auth = new google.auth.GoogleAuth({
             credentials: {
                 client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-                private_key: process
-                    .env
-                    .GOOGLE_SERVICE_ACCOUNT_KEY
-                    ?.replace(/\\n/g, "\n"),
+                private_key: process.env.GOOGLE_SERVICE_ACCOUNT_KEY?.replace(
+                    /\\n/g,
+                    "\n"
+                ),
             },
             scopes: ["https://www.googleapis.com/auth/calendar"],
         });
         const calendar = google.calendar({ version: "v3", auth });
         const calendarId = process.env.GOOGLE_CALENDAR_ID;
 
-        // 2. INSERTAR EVENTO
+        // 2. INSERTAR EVENTO EN CALENDARIO (solo para el salón)
         await calendar.events.insert({
             calendarId,
             requestBody: {
-                summary,
+                summary: `Servicio: ${service} - ${full_name}`,
                 description,
                 start: {
-                    dateTime: startDateTimeString, // "YYYY-MM-DDTHH:MM:SS"
+                    dateTime: startDateTimeString,
                     timeZone: "America/Santiago",
                 },
                 end: {
@@ -78,10 +78,11 @@ export async function POST(req: Request) {
             },
         });
 
-        // Generar ICS para el correo al cliente
+        // --- ICS para que Gmail/otros lo muestren como evento de calendario ---
         const dateCompact = date.replace(/-/g, ""); // YYYYMMDD
         const [hour, minute] = time.split(":");
-        const endHour = parseInt(hour, 10) + 1;
+        const endHourNum = parseInt(hour, 10) + 1;
+        const endHour = endHourNum.toString().padStart(2, "0");
 
         const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
@@ -98,38 +99,55 @@ STATUS:CONFIRMED
 END:VEVENT
 END:VCALENDAR`.replace(/\n/g, "\r\n");
 
-        // 3.a Correo al CLIENTE (con política de cancelación)
+        const phoneLine = phone
+            ? `<p>📞 <strong>Teléfono de contacto:</strong> ${phone}</p>`
+            : "";
+
+        // 3.a Correo al CLIENTE
         await transporter.sendMail({
             from: '"Spazio Color y Estilo" <contacto@coloryestilo.pro>',
             to: email,
-            // Aviso interno silencioso a Mabel por bcc
+            // Aviso interno silencioso a Mabel
             bcc: "mabel.estilistaprofesional@gmail.com",
-            subject: `✅ Reserva Confirmada: ${service}`,
+            subject: `✅ Reserva recibida: ${service}`,
             icalEvent: {
-                filename: "invitacion.ics",
+                filename: "cita-spazio.ics",
                 method: "REQUEST",
                 content: icsContent,
             },
             html: `
         <h1>¡Hola ${full_name}!</h1>
-        <p>Tu cita para <strong>${service}</strong> en <strong>Spazio Color y Estilo</strong> está confirmada.</p>
-
         <p>
-          📅 <strong>Fecha:</strong> ${date}<br/>
-          ⏰ <strong>Hora:</strong> ${time}<br/>
-          📍 <strong>Local:</strong> Spazio Color y Estilo
+          Tu cita para <strong>${service}</strong> en 
+          <strong>Spazio Color y Estilo</strong> ha sido registrada.
         </p>
 
-        <p>Hemos adjuntado la invitación en formato calendario (.ics) para que la agregues fácilmente a tu agenda.</p>
+        <p>
+          📅 <strong>Fecha solicitada:</strong> ${date}<br/>
+          ⏰ <strong>Hora aproximada:</strong> ${time}<br/>
+          📍 <strong>Local:</strong> Spazio Color y Estilo
+        </p>
+        ${phoneLine}
+
+        <p style="font-size:14px;line-height:1.6;">
+          En algunos servicios necesitamos conversar contigo para ajustar tiempos y detalles.
+          Si es necesario, <strong>te contactaremos para confirmar la hora y la duración</strong>
+          de tu cita, ya sea por correo o (si nos dejaste tu número) por WhatsApp o llamada.
+        </p>
+
+        <p style="font-size:13px;line-height:1.6;color:#555;">
+          Adjuntamos una invitación de calendario (.ics) para que puedas agregar la cita fácilmente
+          a tu agenda (Google Calendar, Apple Calendar, Outlook, etc.).
+        </p>
 
         <hr/>
 
-        <h2 style="font-size:16px;margin-bottom:4px;">Política de cancelación</h2>
+        <h2 style="font-size:16px;margin-bottom:4px;">Cambios y cancelaciones</h2>
         <p style="font-size:14px;line-height:1.6;">
-          • Te pedimos por favor que si necesitas <strong>cancelar o reagendar</strong> tu hora, 
-          nos avises con al menos <strong>24 horas de anticipación</strong>.<br/>
-          • En caso de <strong>urgencia</strong>, intenta avisarnos al menos con <strong>6 horas</strong> de anticipación.<br/>
-          • Puedes cancelar o reagendar respondiendo a este mismo correo, 
+          • Si necesitas <strong>cancelar o reagendar</strong> tu hora, por favor avísanos con al menos 
+          <strong>24 horas de anticipación</strong>.<br/>
+          • En caso de <strong>urgencia</strong>, intenta avisarnos al menos <strong>6 horas</strong> antes.<br/>
+          • Puedes cancelar o reagendar respondiendo a este mismo correo 
           o escribiéndonos directamente a nuestro WhatsApp.
         </p>
 
@@ -148,23 +166,26 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
       `,
         });
 
-        // 3.b Correo interno a Mabel (aviso de nueva reserva)
+        // 3.b Correo interno a Mabel
         await transporter.sendMail({
             from: '"Spazio Color y Estilo" <contacto@coloryestilo.pro>',
             to: "mabel.estilistaprofesional@gmail.com",
-            subject: `🗓 Nueva reserva: ${service} - ${full_name}`,
+            subject: `🗓 Nueva reserva web: ${service} - ${full_name}`,
             html: `
         <h2>Nueva reserva desde la web</h2>
         <p>
           <strong>Cliente:</strong> ${full_name}<br/>
           <strong>Email:</strong> ${email}<br/>
+          <strong>Teléfono:</strong> ${phone || "No indicado"}<br/>
           <strong>Servicio:</strong> ${service}<br/>
-          <strong>Fecha:</strong> ${date}<br/>
-          <strong>Hora:</strong> ${time}
+          <strong>Fecha solicitada:</strong> ${date}<br/>
+          <strong>Hora aproximada:</strong> ${time}
         </p>
 
         <p style="font-size:13px;color:#555;">
-          El evento ya fue agregado al calendario configurado en la integración.
+          El evento ya fue agregado al calendario del salón.
+          Puedes contactar a la clienta por correo o WhatsApp si necesitas confirmar hora,
+          tiempos o detalles del servicio.
         </p>
       `,
         });

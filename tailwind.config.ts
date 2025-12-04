@@ -39,22 +39,18 @@ export default {
       // ===============================
       colors: {
         // Base de marca y superficies
-        brand: {
-          ink: "rgb(var(--ink) / <alpha-value>)",
-          fg: "#101010",
-          bg: "rgb(var(--bg) / <alpha-value>)"
-        },
+        brand: { ink: "#0B0F19", fg: "#101010", bg: "#FFFFFF" },
 
         // ⚑ ¡USAR ESTOS PARA EL LOOK & FEEL!
         betaturquesa: {
-          DEFAULT: "rgb(var(--primary) / <alpha-value>)", // Más oscuro/sobrio (Teal 700)
-          600: "rgb(var(--primary) / 0.8)",
-          700: "rgb(var(--primary) / 0.6)"
+          DEFAULT: "#0F766E", // Más oscuro/sobrio (Teal 700)
+          600: "#115E59",
+          700: "#134E4A"
         },
         betadorado: {
-          DEFAULT: "rgb(var(--secondary) / <alpha-value>)", // Dorado más elegante/metálico
-          600: "rgb(var(--secondary) / 0.8)",
-          700: "rgb(var(--secondary) / 0.6)"
+          DEFAULT: "#C5A028", // Dorado más elegante/metálico
+          600: "#A1821E",
+          700: "#856A15"
         },
         // Aliases para ThemeSwitcher (usados en Navbar)
         primary: {
@@ -83,10 +79,10 @@ export default {
         danger: { 50: "#FEF2F2", 100: "#FEE2E2", 200: "#FECACA", 400: "#F87171", 500: "#EF4444", 600: "#DC2626" },
 
         surface: {
-          base: "rgb(var(--bg) / <alpha-value>)",     // tarjetas
-          muted: "rgb(var(--surface) / <alpha-value>)",    // secciones suaves
-          elevated: "rgb(var(--bg) / <alpha-value>)", // con sombra
-          invert: "rgb(var(--ink) / <alpha-value>)"    // hero oscuro
+          base: "#FFFFFF",     // tarjetas
+          muted: "#F7F7F7",    // secciones suaves
+          elevated: "#FFFFFF", // con sombra
+          invert: "#0B0F19"    // hero oscuro
         }
       },
 

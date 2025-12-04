@@ -97,8 +97,9 @@ export default function BookingQuick() {
         RESERVA RÁPIDA
       </h3>
       <p className="text-sm text-gray-500 mb-7 font-mont leading-relaxed">
-        Selecciona tu servicio y horario. Recibirás confirmación inmediata vía
-        correo.
+        Selecciona tu servicio y horario. Recibirás un correo con los detalles
+        de tu reserva y, si es necesario, te contactaremos para confirmar la
+        hora y la duración del servicio.
       </p>
 
       <div className="grid sm:grid-cols-2 gap-5">
@@ -179,6 +180,16 @@ export default function BookingQuick() {
             className={inputClass}
           />
         </div>
+
+        <div className="flex flex-col sm:col-span-2">
+          <label className={labelClass}>Teléfono (opcional)</label>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="+56 9 1234 5678"
+            className={inputClass}
+          />
+        </div>
       </div>
 
       <div className="mt-3">
@@ -187,7 +198,9 @@ export default function BookingQuick() {
           menos <span className="font-semibold">24 horas</span> de
           anticipación. En caso de urgencia, al menos{" "}
           <span className="font-semibold">6 horas</span> antes, escribiendo a
-          nuestro WhatsApp o respondiendo el correo de confirmación.
+          nuestro WhatsApp o respondiendo el correo de confirmación. Para
+          confirmar la hora y los tiempos de tu servicio, podemos contactarte
+          por correo o teléfono.
         </p>
       </div>
 
@@ -198,15 +211,13 @@ export default function BookingQuick() {
           className={`
             w-full flex items-center justify-center px-6 py-4 rounded-full font-bold text-white text-sm tracking-widest font-mont transition-all shadow-md transform duration-300
             ${s === "loading" ? "bg-gray-400 cursor-not-allowed" : ""}
-            ${
-              s === "idle" || s === "err"
-                ? "bg-[#0F766E] hover:bg-[#115E59] hover:shadow-lg active:scale-[0.98]"
-                : ""
+            ${s === "idle" || s === "err"
+              ? "bg-[#0F766E] hover:bg-[#115E59] hover:shadow-lg active:scale-[0.98]"
+              : ""
             }
-            ${
-              s === "ok"
-                ? "bg-[#16a34a] cursor-default ring-4 ring-green-100"
-                : ""
+            ${s === "ok"
+              ? "bg-[#16a34a] cursor-default ring-4 ring-green-100"
+              : ""
             }
           `}
         >
@@ -245,14 +256,15 @@ export default function BookingQuick() {
               ¡LISTO, REVISA TU CORREO!
             </h4>
             <p className="text-sm font-mont text-[#166534]/80 leading-relaxed">
-              Te enviamos la confirmación e invitación a tu calendario.
+              Te enviamos la confirmación con los detalles de tu reserva.
             </p>
             <p className="mt-2 text-xs font-mont text-[#166534]/80 leading-relaxed">
-              Si necesitas cancelar o reagendar, responde el correo de
-              confirmación o escríbenos por WhatsApp con al menos{" "}
-              <span className="font-semibold">24 horas</span> de anticipación.
-              En caso de urgencia, intenta avisar al menos{" "}
-              <span className="font-semibold">6 horas</span> antes.
+              Si necesitamos ajustar la duración o el horario de tu servicio,
+              te contactaremos para confirmar tu hora. Para cancelar o
+              reagendar, avísanos con{" "}
+              <span className="font-semibold">24 horas</span> de anticipación
+              (o <span className="font-semibold">6 horas</span> en caso de
+              urgencia).
             </p>
           </div>
         </div>
