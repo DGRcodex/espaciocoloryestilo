@@ -2,10 +2,14 @@
 
 /* === Tokens rápidos (coinciden con tailwind.config.ts) === */
 :root {
-  --bg: #FFFFFF;
-  /* fondo base */
-  --ink: #0B0F19;
-  /* texto principal */
+  /* Default Palette (Original) */
+  --primary: 15 118 110;
+  /* #0F766E */
+  --secondary: 197 160 40;
+  /* #C5A028 */
+  --bg: 255 255 255;
+  --ink: 11 15 25;
+  --surface: 247 247 247;
 }
 
 /* Base limpia (el starter traía un gradiente que rompía el diseño) */
