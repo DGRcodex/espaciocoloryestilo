@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const works = [
-  { title: "Alisado", img: "/images/gallery/alisado.png" },
+  { title: "Alisado", img: "/images/gallery/alisado2.png" },
   { title: "Morena Iluminada", img: "/images/gallery/morenailuminada.png" },
   { title: "Corte Bob Italiano", img: "/images/gallery/bobitaliano.png" },
   { title: "Styling Ondas Glam", img: "/images/gallery/ondasglam.png" },
