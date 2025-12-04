@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="mb-8">
           <div className="mb-4 relative h-16 w-48">
             <Image
-              src="/logotransparente.png"
+              src="/ColoryEstiloLogo.png"
               alt="Spazio Color y Estilo"
               fill
               className="object-contain object-left mix-blend-multiply"

@@ -14,11 +14,11 @@ export default function Navbar() {
         {/* Marca (Bebas) */}
         <Link
           href="/"
-          className="block"
+          className="block lg:hidden"
           aria-label="Spazio Color y Estilo — inicio"
         >
           <Image
-            src="/logotransparente.png"
+            src="/ColoryEstiloLogo.png"
             alt="Spazio Color y Estilo"
             width={180}
             height={50}

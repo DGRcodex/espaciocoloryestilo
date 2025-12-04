@@ -1,4 +1,5 @@
 import BookingQuick from "@/components/booking/BookingQuick";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -10,6 +11,17 @@ export default function Hero() {
       <div className="container-p grid md:grid-cols-[1.3fr_.9fr] gap-8 items-start">
         {/* Copy principal */}
         <div>
+          {/* Logo preeminente */}
+          <div className="relative h-80 w-full max-w-2xl mx-auto md:h-96 md:max-w-4xl mb-8">
+            <Image
+              src="/ColoryEstiloLogo.png"
+              alt="Spazio Color y Estilo"
+              fill
+              className="object-contain object-center mix-blend-multiply"
+              priority
+            />
+          </div>
+
           <p className="text-betadorado font-medium tracking-widest text-sm mb-4" style={{ fontFamily: "var(--font-mont)" }}>
             UN ESPACIO DEDICADO A TI
           </p>
