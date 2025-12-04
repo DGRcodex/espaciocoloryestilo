@@ -2,8 +2,8 @@ from PIL import Image
 import os
 
 def generate_icons():
-    # Source image (using the high-res favicon we set earlier)
-    source_path = "app/icon.png"
+    # Source image (using the new user provided image)
+    source_path = "app/favicon.png"
     output_dir = "public/icons"
     
     if not os.path.exists(output_dir):
