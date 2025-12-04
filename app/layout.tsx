@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Bebas_Nue, Montserrat, Bodoni_Moda } from "next/font/google";
+import { Bebas_Neue, Montserrat, Bodoni_Moda } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-const bebas = Bebas_Nue({
+const bebas = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-bebas",
