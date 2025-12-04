@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   ],
   authors: [
     { name: "Sambalab", url: "https://sambalab.pro" },
-    { name: "dgrcodex (Daniel Garcia Rojas)", url: "https://dgrcodex.me" },
+    { name: "dgrcodex (Daniel Garcia Rojas)", url: "https://dgrcodex.sambalab.pro" },
   ],
   creator: "dgrcodex",
   publisher: "Sambalab",
